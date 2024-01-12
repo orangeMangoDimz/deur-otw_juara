@@ -249,6 +249,7 @@ const ProductDetail = () => {
 
           placeButtonRef.current.style.display = "block";
 
+          // Ring Shape
           setReticle({
             ...reticle,
             visible: true,
