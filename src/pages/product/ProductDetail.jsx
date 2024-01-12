@@ -9,7 +9,13 @@ import { RGBELoader } from "../../jsm/loaders/RGBELoader.js";
 import HdrFile from "../../textures/photo_studio_01_1k.hdr";
 import { RoughnessMipmapper } from "../../jsm/utils/RoughnessMipmapper.js";
 import "./ProductDetail.css";
-import mod from "../../3d/5.glb";
+import product1 from "../../3d/1.glb";
+import product2 from "../../3d/2.glb";
+import product3 from "../../3d/3.glb";
+import product4 from "../../3d/4.glb";
+import product5 from "../../3d/5.glb";
+
+const products = [ product1, product2, product3, product4, product5 ]
 
 const ProductDetail = () => {
   const [scene, setScene] = useState(null);
@@ -28,6 +34,7 @@ const ProductDetail = () => {
   const placeButtonRef = useRef(null);
 
   const { id } = useParams();
+  
   useEffect(() => {
     setScene(new THREE.Scene());
     setRenderer(new THREE.WebGLRenderer({ antialias: true, alpha: true }));
@@ -69,7 +76,7 @@ const ProductDetail = () => {
       }
 
       // loadModel(id);
-      loadModel(mod, function (currentObject) {
+      loadModel(products[id-1], function (currentObject) {
         // this function will be executed only after the model is loaded
         scene.add(currentObject);
 
@@ -127,7 +134,7 @@ const ProductDetail = () => {
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
 
-    document.body.appendChild(VRButton.createButton(renderer));
+    // document.body.appendChild(VRButton.createButton(renderer));
 
     const options = {
       requiredFeatures: ["hit-test"],
@@ -169,17 +176,17 @@ const ProductDetail = () => {
         pmremGenerator.dispose();
         render();
 
-        const loader = new GLTFLoader();
-        loader.load(
-          mod,
-          function (glb) {
-            callback(glb.scene); // call the callback function with the loaded model as an argument
-          },
-          undefined,
-          function (error) {
-            console.log(error);
-          }
-        );
+  const loader = new GLTFLoader();
+  loader.load(
+    products[id-1],
+    function (glb) {
+      callback(glb.scene); // call the callback function with the loaded model as an argument
+    },
+    undefined,
+    function (error) {
+      console.log(error);
+    }
+  );
       });
   };
 

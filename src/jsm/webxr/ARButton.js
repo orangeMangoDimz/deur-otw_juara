@@ -38,7 +38,7 @@ class ARButton {
 			button.style.left = 'calc(50% - 50px)';
 			button.style.width = '100px';
 
-			button.textContent = 'START AR';
+			button.textContent = 'View 3D';
 
 			button.onmouseenter = function () {
 
@@ -98,7 +98,7 @@ class ARButton {
 			element.style.padding = '12px 6px';
 			element.style.border = '1px solid #fff';
 			element.style.borderRadius = '4px';
-			element.style.background = 'rgba(0,0,0,0.1)';
+			// element.style.background = 'rgba(0,0,0,0.1)';
 			element.style.color = '#fff';
 			element.style.font = 'normal 13px sans-serif';
 			element.style.textAlign = 'center';
@@ -112,6 +112,7 @@ class ARButton {
 
 			button.id = 'ARButton';
 			button.style.display = 'none';
+			button.style.backgroundColor = '#567582';
 
 			stylizeElement( button );
 

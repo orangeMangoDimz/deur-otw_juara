@@ -18,8 +18,8 @@ const FeaturedItems = () => {
       <div className="relative flex justify-center items-center flex-col gap-y-5">
         <img src="./images/cover/cover2.png" alt="cvoer-2" />
         <div className="absolute left-0 right-0">
-          <h1 className="text-white text-center font-bold tracking-widest">
-            FEATURED ITEMS
+          <h1 className="text-white text-center tracking-widest">
+            FEATURED <span className="font-extrabold">ITEMS</span>
           </h1>
           <div className="m-5">
             <div className="flex justify-center items-center gap-x-8">
