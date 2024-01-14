@@ -13,7 +13,7 @@ const Home = () => {
   return (
     <>
       <Header />
-      <DashboardImageCover />
+      <DashboardImageCover imgSrc="./images/cover/cover.png" />
       <RoomInspiration />
       <FeaturedItems />
       <Client />

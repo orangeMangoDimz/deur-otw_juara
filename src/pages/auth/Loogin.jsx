@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../../component/Header";
 import Footer from "../../component/Footer";
+import CustomButton from "../../component/CustomButton";
 
 const Login = () => {
   return (
@@ -34,12 +35,7 @@ const Login = () => {
                 type="password"
                 placeholder="Password"
               />
-              <button
-                type="submit"
-                className="rounded-lg bg-[#567582] text-white w-full p-3 my-5"
-              >
-                Login In
-              </button>
+              <CustomButton content={"SIGN IN"}/>
             </form>
             <a
               className="text-[#3F414E] font-bold text-center block my-3"

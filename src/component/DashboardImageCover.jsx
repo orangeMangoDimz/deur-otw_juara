@@ -1,9 +1,12 @@
 import React from "react";
 
-const DashboardImageCover = () => {
+const DashboardImageCover = ({ imgSrc }) => {
+  const clickHandler = () => {
+    window.location.href = "/room-style/modern";
+  }
   return (
     <>
-      <div
+      <div onClick={clickHandler}
         className="relative flex justify-center items-center"
         style={{ height: "400px" }}
       >
@@ -12,7 +15,7 @@ const DashboardImageCover = () => {
           style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
         ></div>
         <img
-          src="./images/cover/cover.png"
+          src={imgSrc}
           alt="cover"
           className="absolute top-0 left-0 h-full w-full object-cover"
         />
