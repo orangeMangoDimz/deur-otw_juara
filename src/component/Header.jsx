@@ -21,7 +21,7 @@ const Header = () => {
         <section className="flex justify-center gap-x-5 items-center">
           <span>
             <CiUser className="inline me-2" />
-            <a href="">Loog In</a>
+            <a href="/login">Loog In</a>
           </span>
           <CiSearch />
           <MdOutlineShoppingCart />
