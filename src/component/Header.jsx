@@ -23,8 +23,12 @@ const Header = () => {
             <CiUser className="inline me-2" />
             <a href="/login">Loog In</a>
           </span>
-          <CiSearch />
-          <MdOutlineShoppingCart />
+          <span onClick={() => {
+            window.location.href = '/search'
+          }}><CiSearch /></span>
+          <span onClick={() => {
+            window.location.href = '/cart'
+          }}><MdOutlineShoppingCart /></span>
         </section>
       </div>
     </header>

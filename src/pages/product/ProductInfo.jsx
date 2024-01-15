@@ -4,11 +4,9 @@ import Header from "../../component/Header";
 import Footer from "../../component/Footer";
 import Breadcrumb from "../../component/BreadCrumb";
 import { FaStar } from "react-icons/fa";
-import { CiShoppingCart } from "react-icons/ci";
 import CustomButton from "../../component/CustomButton";
-import { RiArrowDropRightLine } from "react-icons/ri";
-import { RiArrowDropLeftLine } from "react-icons/ri";
 import HorizontalLine from "../../component/HorizontalLine";
+import NumberStockInput from "../../component/NumberStockInput";
 
 const data = [
   { id: 1, imgSrc: "/images/product_info/1.png" },
@@ -29,6 +27,18 @@ const ProductInfo = () => {
   useEffect(() => {
     setCurrSrc(`/images/product_info/${currImg}.png`)
   }, [currImg])
+
+  const increaseNum = () => {
+    if (stock > 0) {
+      setStock(stock + 1)
+    }
+  }
+
+  const decreaseNum = () => {
+    if (stock > 0) {
+      setStock(stock - 1)
+    }
+  }
 
   return (
     <>
@@ -105,21 +115,7 @@ const ProductInfo = () => {
                 </div>
               </div>
               <div className="flex justify-center items-center gap-x-10">
-                <form className="max-w-xs mx-auto">
-                  <div className="relative flex items-center bg-white border border-black outline-black">
-                    <button type="button" id="decrement-button" data-input-counter-decrement="quantity-input" className="rounded-s-lg p-3 h-11" onClick={() => {
-                      if (stock > 0) {
-                        setStock(stock - 1)
-                      }
-                    }}>
-                      <RiArrowDropLeftLine />
-                    </button>
-                    <input type="text" id="quantity-input" data-input-counter aria-describedby="helper-text-explanation" className=" h-11 text-center text-black block w-full py-2.5" placeholder="1" required value={stock} />
-                    <button type="button" id="increment-button" data-input-counter-increment="quantity-input" className="rounded-s-lg p-3 h-11" onClick={() => setStock(stock + 1)}>
-                      <RiArrowDropRightLine />
-                    </button>
-                  </div>
-                </form>
+                <NumberStockInput stock={stock} increaseNum={increaseNum} decreaseNum={decreaseNum} />
                 <CustomButton icon={<CiShoppingCart className="text-white" />} content={<span className="text-white">ADD TO CART</span>} />
               </div>
             </div>
