@@ -6,7 +6,7 @@ const ItemList = ({ imgSrc, id, title }) => {
       <section className="relative" style={{ width: "150px", height: "200px" }}>
         <div className="block">
           <img
-            src={`./images/product/${imgSrc}`}
+            src={`/images/product/${imgSrc}`}
             alt="product"
             className="h-full w-full object-cover"
             style={{ height: "200px" }}

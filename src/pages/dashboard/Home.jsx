@@ -8,12 +8,16 @@ import FeaturedItems from "./FeaturedItems";
 import Client from "./Clienct";
 import WhoAreWe from "./WhoAreWe";
 import Ready from "./Ready";
+import DashboardImageCover2 from "../../component/DashboardImageCover2";
+import DashboardImageCover3 from "../../component/DashboardImageCover3";
 
 const Home = () => {
   return (
     <>
       <Header />
-      <DashboardImageCover />
+      <DashboardImageCover imgSrc="./images/cover/cover.png" />
+      <DashboardImageCover2 />
+      <DashboardImageCover3 />
       <RoomInspiration />
       <FeaturedItems />
       <Client />
