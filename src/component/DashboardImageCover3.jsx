@@ -32,7 +32,7 @@ const DashboardImageCover3 = () => {
                                     />
                                     <div className="absolute w-full h-full flex justify-center items-center flex-col">
                                         <h1
-                                            className=" text-white tracking-widest font-bold text-5xl"
+                                            className=" text-white tracking-widest font-bold text-3xl"
                                             style={{ zIndex: 20 }}
                                         >
                                             {item.title}

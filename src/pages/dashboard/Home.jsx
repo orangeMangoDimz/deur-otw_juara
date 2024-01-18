@@ -10,8 +10,12 @@ import WhoAreWe from "./WhoAreWe";
 import Ready from "./Ready";
 import DashboardImageCover2 from "../../component/DashboardImageCover2";
 import DashboardImageCover3 from "../../component/DashboardImageCover3";
+import Cookies from "universal-cookie";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+
+
   return (
     <>
       <Header />

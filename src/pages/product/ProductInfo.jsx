@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Header from "../../component/Header";
 import Footer from "../../component/Footer";
 import Breadcrumb from "../../component/BreadCrumb";
@@ -7,6 +7,11 @@ import { FaStar } from "react-icons/fa";
 import CustomButton from "../../component/CustomButton";
 import HorizontalLine from "../../component/HorizontalLine";
 import NumberStockInput from "../../component/NumberStockInput";
+import { CiShoppingCart } from "react-icons/ci";
+import ItemList from "../../component/ItemList";
+import axios from "axios";
+import Cookies from "universal-cookie";
+import Swal from 'sweetalert2'
 
 const data = [
   { id: 1, imgSrc: "/images/product_info/1.png" },
@@ -18,11 +23,11 @@ const data = [
 
 const ProductInfo = () => {
   const { product } = useParams();
+  const navigate = useNavigate();
 
   const [stock, setStock] = useState(1);
-  const [currImg, setCurrImg] = useState(0);
-  const [currSrc, setCurrSrc] = useState('/images/product_info/1.png');
-
+  const [currImg, setCurrImg] = useState(1);
+  const [currSrc, setCurrSrc] = useState("/images/product_info/1.png");
 
   useEffect(() => {
     setCurrSrc(`/images/product_info/${currImg}.png`)
@@ -40,15 +45,45 @@ const ProductInfo = () => {
     }
   }
 
+  const [listItem, setListItem] = useState();
+  const cookie = new Cookies();
+
+  useEffect(() => {
+    axios.get("http://localhost:8000/product/", {
+      headers: {
+        "Authorization": "Bearer " + cookie.get("token"),
+      },
+    })
+      .then((response) => {
+        setListItem(response.data.message)
+      }).catch((err) => {
+        console.log(err.response.data.message);
+      })
+  }, [])
+
+  const addToCart = () => {
+    Swal.fire({
+      title: "Done!",
+      text: "Your Product has been added to your cart",
+      icon: "success"
+    }).then(() => {
+      navigate("/")
+    });
+  }
+
+  const view3D = () => {
+    navigate('/product/sofa')
+  }
+
   return (
     <>
       <Header />
       <div className="flex justify-center items-center flex-col gap-y-10">
         <div className="container">
-          <Breadcrumb />
+          {/* <Breadcrumb /> */}
           <div className="flex justify-between items-center gap-x-10">
             <div className="w-1/2">
-              <img src={currSrc ? '/images/product_info/1.png' : ''} alt="product_cover" className="block w-full h-full object-cover" />
+              {currSrc && <img src={currSrc} alt="product_cover" className="block w-full h-full object-cover" />}
               <div className="flex justify-center items-center gap-x-5">
                 {
                   data.map((item) => {
@@ -66,9 +101,12 @@ const ProductInfo = () => {
                   })
                 }
               </div>
+              <div className="flex justify-center items-center mt-5">
+                <button className="text-[#567582] border-2 border-[#567582] px-3 py-2 rounded-lg" onClick={view3D}>View 3D Product</button>
+              </div>
             </div>
             <div className="w-1/2">
-              <h1 className="text-5xl font-bold my-5">Delina 3 Seater</h1>
+              <h1 className="text-5xl font-bold my-5">Sofa</h1>
               <div className="flex justify-start items-center gap-x-3 my-5">
                 <FaStar className="text-[#FBBC05]" />
                 <span>4.9</span>
@@ -116,7 +154,7 @@ const ProductInfo = () => {
               </div>
               <div className="flex justify-center items-center gap-x-10">
                 <NumberStockInput stock={stock} increaseNum={increaseNum} decreaseNum={decreaseNum} />
-                <CustomButton icon={<CiShoppingCart className="text-white" />} content={<span className="text-white">ADD TO CART</span>} />
+                <CustomButton icon={<CiShoppingCart className="text-white" />} content={<span onClick={addToCart} className="text-white">ADD TO CART</span>} />
               </div>
             </div>
           </div>
@@ -141,7 +179,20 @@ const ProductInfo = () => {
         <hr />
         <HorizontalLine />
         <div className="mb-10">
-          <p><span className="font-extrabold tracking-widest">RELATED</span> PRODUCTS</p>
+          <div className="flex justify-center items-center flex-col gap-y-10">
+            <p><span className="font-extrabold tracking-widest">RELATED</span> PRODUCTS</p>
+            <div className="flex justify-center items-center gap-x-8 mb-10">
+              {listItem?.slice(0, 6).map((item, index) => {
+                return (
+                  <ItemList
+                    key={index}
+                    imgSrc={item.image}
+                    title={item.name}
+                  />
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
       <Footer />

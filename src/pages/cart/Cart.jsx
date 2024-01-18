@@ -3,11 +3,27 @@ import Table from '../../component/Table';
 import Detailinfo from '../../component/DetailInfo';
 import Header from '../../component/Header';
 import Footer from '../../component/Footer';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 const Cart = () => {
+
+
+    const navigate = useNavigate();
+
+    const cartHandler = () => {
+        Swal.fire({
+            title: "Done!",
+            text: "You Product has successfully checked out!",
+            icon: "success"
+        }).then(() => {
+            navigate('/');
+        });
+    }
+
     return (
         <>
-        <Header />
+            <Header />
             <div className="flex justify-center items-center flex-col">
                 <div className="container">
                     <h1 className='font-extrabold text-3xl tracking-widest text-center my-10'>YOUR SHOPPING CART</h1>
@@ -32,7 +48,7 @@ const Cart = () => {
                                 <div className='w-full bg-white' style={{ height: '2px' }}></div>
                                 <Detailinfo leftContent={<span className='font-extrabold'>TOTAL</span>} rightContent={<span className='font-extrabold'>: Calculated during checkout</span>} />
                             </div>
-                            <button className='px-5 py-2 border-2 border-[#567582] outline-[#567582] text-[#567582] w-full font-bold'>Check Out</button>
+                            <button className='px-5 py-2 border-2 border-[#567582] outline-[#567582] text-[#567582] w-full font-bold hover:bg-[#567582] hover:text-white' onClick={cartHandler}>Check Out</button>
                         </div>
                     </div>
                 </div>

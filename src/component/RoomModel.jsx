@@ -1,10 +1,18 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const RoomModel = ({ imgSrc, title }) => {
-  console.log(`./images/room/${imgSrc}`);
+const RoomModel = ({ id, imgSrc, title }) => {
+
+  const navigate = useNavigate();
+
+  const roomhandler = () => {
+  console.log("Selected Room ID : ", id);
+      navigate(`room-style/${id}/${title}`)
+  }
+
   return (
     <>
-      <section className="relative flex justify-center items-center">
+      <section className="relative flex justify-center items-center" onClick={roomhandler}>
         <img src={`./images/room/${imgSrc}`} alt="room" />
         <div
           className="absolute p-5 rounded-xl"
